@@ -23,7 +23,8 @@
     "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts",
     "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
     "start:dev:migrate": "npm run migration:run && nest start --watch",
-    "start:prod:migrate": "npm run migration:run && node dist/main.js"
+    "start:prod:migrate": "npm run migration:run && node dist/main.js",
+    "seed": "ts-node -r tsconfig-paths/register src/database/seed/commands/seed.command.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
