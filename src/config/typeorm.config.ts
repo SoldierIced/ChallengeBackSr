@@ -2,7 +2,7 @@ import {registerAs} from '@nestjs/config';
 import {TypeOrmModuleOptions} from '@nestjs/typeorm';
 
 export default registerAs('typeorm', (): TypeOrmModuleOptions => ({
-    type: 'postgres',
+    type: (process.env.DB_TYPE as any) ?? 'postgres',
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT ?? '5432', 10),
     username: process.env.DB_USER,
