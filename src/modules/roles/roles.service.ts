@@ -5,6 +5,8 @@ import {Role} from './entities/role.entity';
 import {CreateRoleDto} from './dto/create-role.dto';
 import {UpdateRoleDto} from './dto/update-role.dto';
 import {Permission} from "../permissions/entities/permission.entity";
+import {StringToSlug} from "../../common/utils";
+import {LENGTH_SLUG_ROLE} from "./roles-constant";
 
 @Injectable()
 export class RolesService {
@@ -26,7 +28,7 @@ export class RolesService {
 
         const role = this.roleRepository.create({
             name: dto.name,
-            slug: dto.slug,
+            slug:StringToSlug(dto.slug ?? dto.name,LENGTH_SLUG_ROLE),
             permissions,
         });
         return this.roleRepository.save(role);

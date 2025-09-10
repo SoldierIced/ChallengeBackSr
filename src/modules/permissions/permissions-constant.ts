@@ -3,7 +3,8 @@ export enum PermissionName {
     UPDATE_USER = 'update_user',
     DELETE_USER = 'delete_user',
     VIEW_USER = 'view_user',
-
+    VIEW_ALL_USERS='view_all_users',
+    VIEW_ALL_SALARY_USERS='view_all_salary_users',
     CREATE_ROLE = 'create_role',
     UPDATE_ROLE = 'update_role',
     DELETE_ROLE = 'delete_role',
@@ -15,8 +16,13 @@ export const DEFAULT_PERMISSIONS: { name: string; slug: PermissionName }[] = [
     { name: 'Update user', slug: PermissionName.UPDATE_USER },
     { name: 'Delete user', slug: PermissionName.DELETE_USER },
     { name: 'View user', slug: PermissionName.VIEW_USER },
+    { name: 'View all users', slug: PermissionName.VIEW_ALL_USERS },
+    { name: 'View all salary users', slug: PermissionName.VIEW_ALL_SALARY_USERS },
     { name: 'Create role', slug: PermissionName.CREATE_ROLE },
     { name: 'Update role', slug: PermissionName.UPDATE_ROLE },
     { name: 'Delete role', slug: PermissionName.DELETE_ROLE },
     { name: 'View role', slug: PermissionName.VIEW_ROLE },
 ];
+
+export const LENGTH_SLUG_PERMISSION =60;
+export const LENGTH_NAME_PERMISSION=100;

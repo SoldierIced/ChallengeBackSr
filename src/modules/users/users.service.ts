@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as crypto from 'crypto';
+import {hashPassword} from "./users.constant";
 
 @Injectable()
 export class UsersService {
@@ -14,7 +15,8 @@ export class UsersService {
         const user = this.userRepository.create({
             name: dto.name,
             email: dto.email,
-            password: this.hash(dto.password),
+            salary: dto.salary,
+            password: hashPassword(dto.password),
         });
         return this.userRepository.save(user);
     }
@@ -32,7 +34,7 @@ export class UsersService {
     async update(id: string, dto: UpdateUserDto): Promise<User> {
         const u = await this.findOne(id);
         if (dto.password) {
-            (u as any).password = this.hash(dto.password);
+            (u as any).password = hashPassword(dto.password);
         }
         Object.assign(u, dto);
         return this.userRepository.save(u);
@@ -43,7 +45,4 @@ export class UsersService {
         await this.userRepository.remove(u);
     }
 
-    private hash(s: string) {
-        return crypto.createHash('sha256').update(s).digest('hex');
-    }
 }

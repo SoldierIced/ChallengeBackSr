@@ -7,6 +7,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import {Role} from "../../roles/entities/role.entity";
+import {LENGTH_NAME_PERMISSION, LENGTH_SLUG_PERMISSION} from "../permissions-constant";
 
 @Entity({name: 'permissions'})
 @Unique(['slug'])
@@ -14,10 +15,10 @@ export class Permission {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({length: 100})
+    @Column({length: LENGTH_NAME_PERMISSION})
     name: string;
 
-    @Column({length: 60})
+    @Column({length: LENGTH_SLUG_PERMISSION})
     slug: string;
 
     @ManyToMany(() => Role, (role) => role.permissions)
