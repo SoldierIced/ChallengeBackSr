@@ -12,6 +12,7 @@ export const ROLE_PERMISSIONS: Record<RoleName, PermissionName[]> = {
         PermissionName.VIEW_ME,
         PermissionName.VIEW_ALL_USERS,
         PermissionName.VIEW_ROLE,
+        PermissionName.VIEW_ALL_SALARY_USERS
     ],
     [RoleName.USER]: [
         PermissionName.VIEW_ME,
