@@ -9,7 +9,7 @@ const typeOrmConfig = typeormConfig();
 
 export const AppDataSource = new DataSource({
     ...typeOrmConfig,
-    entities: ['dist/**/*.entity.js'],
-    migrations: ['src/database/migrations/*{.ts,.js}'],
+    entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+    migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,
 });

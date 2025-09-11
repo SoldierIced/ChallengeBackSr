@@ -21,10 +21,13 @@
     "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate src/database/migrations/NewMigration -d src/database/data-source.ts",
     "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create src/database/migrations/NewMigration",
     "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts",
+    "migration:run:prod": "node ./node_modules/typeorm/cli.js migration:run -d dist/database/data-source.js",
     "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
+    "migration:revert:prod": "node ./node_modules/typeorm/cli.js migration:revert -d dist/database/data-source.js",
     "start:dev:migrate": "npm run migration:run && nest start --watch",
     "start:prod:migrate": "npm run migration:run && node dist/main.js",
-    "seed": "ts-node -r tsconfig-paths/register src/database/seed/commands/seed.command.ts"
+    "seed": "ts-node -r tsconfig-paths/register src/database/seed/commands/seed.command.ts",
+    "seed:prod": "node dist/database/seed/commands/seed.command.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

@@ -31,13 +31,6 @@ services:
       - .env
     ports:
       - "${APP_PORT:-3000}:3000"
-#    command: sh -c "npm run migration:run && npm run seed && npm run start:dev" #prod
-    command: sh -c "npm run migration:run  && npm run start:dev" #dev
-    volumes:
-#      - .:/usr/src/app #prod
-#      - /usr/src/app/node_modules #prod
-      - .:/app #dev
-      - /app/node_modules #dev
-
+    command: sh -c "npm run migration:run:prod && npm run seed:prod && npm run start:prod" #prod
 volumes:
   pgdata:
