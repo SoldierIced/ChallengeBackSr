@@ -21,6 +21,9 @@ export class Permission {
     @Column({length: LENGTH_SLUG_PERMISSION})
     slug: string;
 
+    @Column("text", { array: true, nullable: true })
+    fields_show: string[];
+
     @ManyToMany(() => Role, (role) => role.permissions)
     roles: Role[];
 

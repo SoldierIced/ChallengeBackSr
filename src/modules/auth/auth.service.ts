@@ -35,7 +35,6 @@ export class AuthService {
 
     async me(userId: string): Promise<Partial<User>> {
         const user = await this.usersService.findOneWithRelations({id: userId});
-        console.log(user);
         if (!user) throw new UnauthorizedException();
 
         const {password, ...result} = user;

@@ -1,4 +1,14 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Post, UnauthorizedException, UseGuards} from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Post,
+    UnauthorizedException,
+    UseGuards,
+    UseInterceptors
+} from '@nestjs/common';
 import {AuthService} from './auth.service';
 import {SiginDto} from "./dto/sigin.dto";
 import {ApiTags} from "@nestjs/swagger";
@@ -8,9 +18,11 @@ import {JwtAuthGuard} from "../../common/guards/jwt-auth.guard";
 import {RolesPermissionsGuard} from "../../common/guards/roles-permissions.guard";
 import {PermissionName} from "../permissions/permissions-constant";
 import {Permissions} from "../../common/decorators/permissions.decorator";
+import {HideFieldsInterceptor} from "../../common/interceptors/hides-fields.interceptor";
 
 @ApiTags('auth')
-@Controller({version: 'v1', path: 'auth'})
+@Controller({ path: 'auth' ,version: '1'})
+@UseInterceptors(HideFieldsInterceptor)
 export class AuthController {
     constructor(
         private readonly authService: AuthService,
@@ -28,7 +40,6 @@ export class AuthController {
     @Permissions(PermissionName.VIEW_ME)
     @Get('me')
     async me(@GetUser() user :any) {
-        console.log(user);
         return this.authService.me(user.id);
     }
 

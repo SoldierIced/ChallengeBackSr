@@ -48,6 +48,7 @@ export class UsersService {
                 'role.slug',
                 'permission.id',
                 'permission.slug',
+                'permission.fields_show',
             ])
             .addSelect(selects)
 
