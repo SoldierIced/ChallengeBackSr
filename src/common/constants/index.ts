@@ -18,3 +18,14 @@ export const ROLE_PERMISSIONS: Record<RoleName, PermissionName[]> = {
         PermissionName.UPDATE_ME
     ],
 };
+
+export const SUCCESS_MESSAGES = {
+    DELETE: (val: string) => `${val} deleted successfully`,
+    CREATE: (val: string) => `${val} created successfully`,
+    UPDATE: (val: string) => `${val} updated successfully`,
+
+};
+
+export const STATUS_SUCCESS='success';
+
+export const STATUS_ERROR='error';

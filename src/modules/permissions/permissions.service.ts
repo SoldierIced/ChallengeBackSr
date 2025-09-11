@@ -43,6 +43,7 @@ export class PermissionsService {
 
     async remove(id: string): Promise<void> {
         const permission = await this.findOne(id);
+
         await this.permissionRepository.remove(permission);
     }
 }

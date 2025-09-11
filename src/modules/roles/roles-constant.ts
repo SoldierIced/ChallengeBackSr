@@ -11,3 +11,4 @@ export const DEFAULT_ROLES: { name: string; slug: RoleName }[] = [
 ];
 export const LENGTH_SLUG_ROLE =60;
 export const LENGTH_NAME_ROLE=100;
+export const NAME_ROLE = 'Role';

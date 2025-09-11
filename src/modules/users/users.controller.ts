@@ -9,6 +9,8 @@ import {PermissionName} from "../permissions/permissions-constant";
 import {Permissions} from "../../common/decorators/permissions.decorator";
 import {ViewUserGuard} from "../../common/guards/view-user.guard";
 import {HideFieldsInterceptor} from "../../common/interceptors/hides-fields.interceptor";
+import {SUCCESS_MESSAGES} from "../../common/constants";
+import {USER_NAME} from './users.constant';
 
 @ApiTags('users')
 @UseInterceptors(HideFieldsInterceptor)
@@ -20,8 +22,9 @@ export class UsersController {
     @Post()
     @UseGuards(JwtAuthGuard, RolesPermissionsGuard)
     @Permissions(PermissionName.CREATE_USER)
-    create(@Body() dto: CreateUserDto) {
-        return this.usersService.create(dto);
+    async create(@Body() dto: CreateUserDto) {
+        const data = await this.usersService.create(dto);
+        return {data, message: SUCCESS_MESSAGES.CREATE(USER_NAME)}
     }
 
     @Get()
@@ -40,8 +43,9 @@ export class UsersController {
     @Patch(':userId')
     @UseGuards(JwtAuthGuard, RolesPermissionsGuard)
     @Permissions(PermissionName.UPDATE_USER)
-    update(@Param('userId') userId: string, @Body() dto: UpdateUserDto) {
-        return this.usersService.update(userId, dto);
+    async update(@Param('userId') userId: string, @Body() dto: UpdateUserDto) {
+        const data = await this.usersService.update(userId, dto);
+        return {data, message: SUCCESS_MESSAGES.CREATE(USER_NAME)}
     }
 
     @Patch(':userId')
@@ -54,7 +58,8 @@ export class UsersController {
     @Delete(':userId')
     @UseGuards(JwtAuthGuard, RolesPermissionsGuard)
     @Permissions(PermissionName.DELETE_USER)
-    remove(@Param('userId') userId: string) {
-        return this.usersService.remove(userId);
+    async remove(@Param('userId') userId: string) {
+        const data = await this.usersService.remove(userId);
+        return {data, message: SUCCESS_MESSAGES.CREATE(USER_NAME)}
     }
 }

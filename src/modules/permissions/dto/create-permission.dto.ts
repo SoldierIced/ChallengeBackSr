@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsOptional, IsString, MaxLength} from 'class-validator';
+import {IsArray, IsNotEmpty, IsOptional, IsString, MaxLength} from 'class-validator';
 import {LENGTH_NAME_PERMISSION, LENGTH_SLUG_PERMISSION} from "../permissions-constant";
 
 export class CreatePermissionDto {
@@ -11,4 +11,10 @@ export class CreatePermissionDto {
     @IsOptional()
     @MaxLength(LENGTH_SLUG_PERMISSION)
     slug: string;
+
+    @IsArray()
+    @IsOptional()
+    fields_show: string;
+
+
 }
