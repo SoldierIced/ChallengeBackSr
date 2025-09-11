@@ -1,5 +1,10 @@
 import crypto from "crypto";
+import * as bcrypt from 'bcrypt';
 
-export function hashPassword(s: string) {
-    return crypto.createHash('sha256').update(s).digest('hex');
+export function hashPassword(password: string): Promise<string> {
+    const saltRounds = 10;
+    return bcrypt.hash(password, saltRounds);
+}
+export async function comparePassword(password: string, hash: string): Promise<boolean> {
+    return bcrypt.compare(password, hash);
 }

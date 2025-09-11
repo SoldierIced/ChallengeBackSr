@@ -71,7 +71,7 @@ export class SeedService {
                     name: user.name,
                     email: user.email,
                     salary: user.salary,
-                    password: hashPassword(user.password),
+                    password:await hashPassword(user.password),
                     role,
                 });
                 await this.userRepository.save(userDb);
