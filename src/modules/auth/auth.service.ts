@@ -20,7 +20,6 @@ export class AuthService {
         }
         const passwordMatch = await comparePassword(password, user.password);
         if (!passwordMatch) throw new UnauthorizedException();
-        //TODO agregar sistema de validacion de permisos para variables
         const payload = {
             sub: user.id,
             name: user.name,
